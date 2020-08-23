@@ -111,10 +111,115 @@ const licenses = [
 // array of questions for user
 const licenseChoice = [];
 licenses.forEach(license => licenseChoice.push(license.name));
-console.log(licenseChoice);
 
 const questions = [
+    {
+        type:       "input",
+        name:       "title",
+        message:    "What is the project title",
+        validate:   (value) => {
+            if (value !== "" || value !== null) {
+                return true;
+            } else {
+                return "Title can not be empty.";
+            }
+        }
+    },
+    {
+        type:       "input",
+        name:       "description",
+        message:    "What is the project description",
+        validate:   (value) => {
+            if (value !== "" || value !== null) {
+                return true;
+            } else {
+                return "Description can not be empty.";
+            }
+        }
+    },
+    {
+        type:       "input",
+        name:       "installation",
+        message:    "What are the project's installation instructions",
+        validate:   (value) => {
+            if (value !== "" || value !== null) {
+                return true;
+            } else {
+                return "Installation instructions can not be empty.";
+            }
+        }
+    },
+    {
+        type:       "input",
+        name:       "usage",
+        message:    "What is the project's usage information",
+        validate:   (value) => {
+            if (value !== "" || value !== null) {
+                return true;
+            } else {
+                return "Usage information can not be empty.";
+            }
+        }
+    },
+    {
+        type:       "list",
+        name:       "license",
+        message:    "What license does your project fall under",
+        choices:    licenseChoice
+    },
+    {
+        type:       "input",
+        name:       "contribution",
+        message:    "What are the project's contribution guidelines",
+        validate:   (value) => {
+            if (value !== "" || value !== null) {
+                return true;
+            } else {
+                return "Contribution guidelines can not be empty.";
+            }
+        }
+    },
+    {
+        type:       "input",
+        name:       "testing",
+        message:    "What are the project's testing instructions",
+        validate:   (value) => {
+            if (value !== "" || value !== null) {
+                return true;
+            } else {
+                return "Testing instructions can not be empty.";
+            }
+        }
+    },
+    {
+        type:       "input",
+        name:       "username",
+        message:    "What is your GitHub username",
+        validate:   (value) => {
+            if (value !== "" || value !== null) {
+                return true;
+            } else {
+                return "Username can not be empty.";
+            }
+        }
+    },
+    {
+        type:       "input",
+        name:       "email",
+        message:    "What is your email address",
+        validate:   (value) => {
 
+            const valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
+
+            if (value === "" || value === null) {
+                return "Email can not be empty.";
+            } else if (valid) {
+                return true;
+            } else {
+                return "Please enter a valid email."
+            }
+        }
+    }
 ];
 
 // function to write README file
@@ -123,8 +228,12 @@ function writeToFile(fileName, data) {
 
 // function to initialize program
 function init() {
+    inquirer.prompt(questions).then((answers) => {
+        console.log('\nProject Information\n-------------------\n');
+        console.log(JSON.stringify(answers, null, '  '));
+    });
 
 }
 
 // function call to initialize program
-// init();
+init();
