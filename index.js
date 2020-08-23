@@ -2,6 +2,7 @@
 require("./utils/generateMarkdown");
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateMarkdown = require("./utils/generateMarkdown");
 
 // object containing blank user license template and array of objects containing various license information
 let userLicense = {
@@ -224,12 +225,35 @@ const questions = [
 
 // function to write README file
 function writeToFile(fileName, data) {
+
+    fs.writeFile(fileName, data, (err) => {
+        console.log(err);
+    });
+
+    console.log("Successfully created README.md! File is located in the 'generated' directory.")
 }
 
 // function to initialize program
 function init() {
+
     inquirer.prompt(questions).then((answers) => {
-        
+         
+        licenses.forEach(license => {
+            if(answers.license === license.name) {
+                userLicense.name = license.name;
+                userLicense.image = license.image;
+                userLicense.url = license.url;
+            }
+        });
+
+        const userReadme = generateMarkdown(answers, userLicense);
+
+        try {
+            writeToFile("./generated/README.md", userReadme);
+        } 
+        catch (err) {
+            console.log(err);
+        }
     });
 
 }
