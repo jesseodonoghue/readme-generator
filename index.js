@@ -92,9 +92,9 @@ const licenses = [
         url:    "[IBM Public License Version 1.0](https://opensource.org/licenses/IPL-1.0)"
     },
     {
-        name:   "The MIT License",
+        name:   "MIT License",
         image:  "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
-        url:    "[The MIT License](https://opensource.org/licenses/MIT)"
+        url:    "[MIT License](https://opensource.org/licenses/MIT)"
     },
     {
         name:   "Mozilla Public License 2.0",
@@ -102,9 +102,9 @@ const licenses = [
         url:    "[Mozilla Public License 2.0](https://opensource.org/licenses/MPL-2.0)"
     },
     {
-        name:   "The zlib/libpng License",
+        name:   "zlib/libpng License",
         image:  "[![License: Zlib](https://img.shields.io/badge/License-Zlib-lightgrey.svg)](https://opensource.org/licenses/Zlib)",
-        url:    "[The zlib/libpng License](https://opensource.org/licenses/Zlib)"
+        url:    "[zlib/libpng License](https://opensource.org/licenses/Zlib)"
     }    
 ];
 
@@ -116,97 +116,97 @@ const questions = [
     {
         type:       "input",
         name:       "title",
-        message:    "What is the project title",
+        message:    "What is the project title?",
         validate:   (value) => {
-            if (value !== "" || value !== null) {
-                return true;
-            } else {
+            if (value === "" || value === null) {
                 return "Title can not be empty.";
+            } else {
+                return true;
             }
         }
     },
     {
         type:       "input",
         name:       "description",
-        message:    "What is the project description",
+        message:    "What is the project description?",
         validate:   (value) => {
-            if (value !== "" || value !== null) {
-                return true;
-            } else {
+            if (value === "" || value === null) {
                 return "Description can not be empty.";
+            } else {
+                return true;
             }
         }
     },
     {
         type:       "input",
         name:       "installation",
-        message:    "What are the project's installation instructions",
+        message:    "What are the project's installation instructions?",
         validate:   (value) => {
-            if (value !== "" || value !== null) {
-                return true;
-            } else {
+            if (value === "" || value === null) {
                 return "Installation instructions can not be empty.";
+            } else {
+                return true;
             }
         }
     },
     {
         type:       "input",
         name:       "usage",
-        message:    "What is the project's usage information",
+        message:    "What is the project's usage information?",
         validate:   (value) => {
-            if (value !== "" || value !== null) {
-                return true;
-            } else {
+            if (value === "" || value === null) {
                 return "Usage information can not be empty.";
+            } else {
+                return true;
             }
         }
     },
     {
         type:       "list",
         name:       "license",
-        message:    "What license does your project fall under",
+        message:    "Which license does your project fall under? (select a license)",
         choices:    licenseChoice
     },
     {
         type:       "input",
         name:       "contribution",
-        message:    "What are the project's contribution guidelines",
+        message:    "What are the project's contribution guidelines?",
         validate:   (value) => {
-            if (value !== "" || value !== null) {
-                return true;
-            } else {
+            if (value === "" || value === null) {
                 return "Contribution guidelines can not be empty.";
+            } else {
+                return true;
             }
         }
     },
     {
         type:       "input",
         name:       "testing",
-        message:    "What are the project's testing instructions",
+        message:    "What are the project's testing instructions?",
         validate:   (value) => {
-            if (value !== "" || value !== null) {
-                return true;
-            } else {
+            if (value === "" || value === null) {
                 return "Testing instructions can not be empty.";
+            } else {
+                return true;
             }
         }
     },
     {
         type:       "input",
         name:       "username",
-        message:    "What is your GitHub username",
+        message:    "What is your GitHub username?",
         validate:   (value) => {
-            if (value !== "" || value !== null) {
-                return true;
-            } else {
+            if (value === "" || value === null) {
                 return "Username can not be empty.";
+            } else {
+                return true;
             }
         }
     },
     {
         type:       "input",
         name:       "email",
-        message:    "What is your email address",
+        message:    "What is your email address?",
         validate:   (value) => {
 
             const valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
@@ -229,8 +229,7 @@ function writeToFile(fileName, data) {
 // function to initialize program
 function init() {
     inquirer.prompt(questions).then((answers) => {
-        console.log('\nProject Information\n-------------------\n');
-        console.log(JSON.stringify(answers, null, '  '));
+        
     });
 
 }
