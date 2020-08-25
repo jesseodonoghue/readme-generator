@@ -227,7 +227,9 @@ const questions = [
 function writeToFile(fileName, data) {
 
     fs.writeFile(fileName, data, (err) => {
-        console.log(err);
+        if (err) {
+            console.log(err);
+        }
     });
 
     console.log("Successfully created README.md! File is located in the 'generated' directory.")
@@ -248,12 +250,8 @@ function init() {
 
         const userReadme = generateMarkdown(answers, userLicense);
 
-        try {
-            writeToFile("./generated/README.md", userReadme);
-        } 
-        catch (err) {
-            console.log(err);
-        }
+        writeToFile("./generated/README.md", userReadme);
+        
     });
 
 }
