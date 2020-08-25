@@ -1,4 +1,4 @@
-# JavaScript Quiz Game
+# README Generator
 This Node.js app required me to create a CLI program that receives input from the user and generates a README for their GitHub project based on the answers. 
 
 ## App Breakdown
